@@ -91,15 +91,10 @@ if (empty($_SESSION["id"])) {
             <section style="background-color: #f4f6f9; height:90%;" class="m-0">
                 <div class="d-flex justify-content-between">
                     <h2 class="ms-2">
-                        <?php
-                        echo "Alumnos de la Clase de " . $_SESSION["claseAsignada"];
-                        ?>
+                        Editar datos de perfil
                     </h2>
                     <p class="me-2 my-auto">
-                        <a href="./main.view.php">Home</a> /
-                        <?php
-                        echo $_SESSION["claseAsignada"];
-                        ?>
+                        <a href="./main.view.php">Home</a> / Perfil
                     </p>
                 </div>
                 <div class="card shadow-sm mx-3">

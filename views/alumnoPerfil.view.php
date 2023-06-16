@@ -2,8 +2,6 @@
 session_start();
 if (empty($_SESSION["id"])) {
     header("Location:./logIn.view.php");
-} else if ($_SESSION['permiso'] == 3) {
-    header("Location:./main.view.php");
 }
 ?>
 
@@ -29,18 +27,29 @@ if (empty($_SESSION["id"])) {
             <hr class="text-secondary">
             <div style="color:#bec3cc;">
                 <?php
-                echo "<p class='m-0 p-0' style='font-size:1.2rem;'>Maestro</p>";
+                if ($_SESSION['permiso'] == 1) {
+                    echo "<p class='m-0 p-0' style='font-size:1.2rem;'>Administrador</p>";
+                } else if ($_SESSION['permiso'] == 2) {
+                    echo "<p class='m-0 p-0' style='font-size:1.2rem;'>Maestro</p>";
+                } else {
+                    echo "<p class='m-0 p-0' style='font-size:1.2rem;'>Alumno</p>";
+                }
                 echo "<p class='m-0 p-0'>" . $_SESSION['nombre'] . "</p>";
                 ?>
             </div>
             <hr class="text-secondary">
             <div style="color:#bec3cc;">
                 <?php
-                echo "<p class='mb-3 p-3'>MENU MAESTROS</p>";
-                echo '<p><a href="./maestroAlumnos.view.php" type="button" class="btn btn-outline-dark border-0" style="color:#bec3cc;"><span class="mx-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mortarboard-fill" viewBox="0 0 16 16">
-                        <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5Z"/><path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466 4.176 9.032Z"/>
-                        </svg></span> Alumnos</a></p>';
+                echo "<p class='mb-3 p-3'>MENU ALUMNOS</p>";
+                echo '<p><a href="./alumnoCalificaciones.view.php" type="button" class="btn btn-outline-dark border-0" style="color:#bec3cc;"><span class="mx-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+                    <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+                        <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+                        </svg></span> Ver Calificaciones</p>';
+                echo '<p><a href="./alumnoClases.view.php" type="button" class="btn btn-outline-dark border-0" style="color:#bec3cc;"><span class="mx-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-easel" viewBox="0 0 16 16">
+                        <path d="M8 0a.5.5 0 0 1 .473.337L9.046 2H14a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-1.85l1.323 3.837a.5.5 0 1 1-.946.326L11.092 11H8.5v3a.5.5 0 0 1-1 0v-3H4.908l-1.435 4.163a.5.5 0 1 1-.946-.326L3.85 11H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h4.954L7.527.337A.5.5 0 0 1 8 0zM2 3v7h12V3H2z"/>
+                        </svg></span> Administra tus Clases</a></p>';
                 ?>
+
             </div>
         </aside>
         <section style="width:100%;">
@@ -67,7 +76,7 @@ if (empty($_SESSION["id"])) {
                                             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                                             <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
                                             </svg>
-                                            <a class="dropdown-item" href="./maestroPerfil.view.php">Perfil</a>
+                                            <a class="dropdown-item" href="./alumnoPerfil.view.php">Perfil</a>
                                         ';
                                     echo '
                                         <li>
@@ -90,17 +99,8 @@ if (empty($_SESSION["id"])) {
             </header>
             <section style="background-color: #f4f6f9; height:90%;" class="m-0">
                 <div class="d-flex justify-content-between">
-                    <h2 class="ms-2">
-                        <?php
-                        echo "Alumnos de la Clase de " . $_SESSION["claseAsignada"];
-                        ?>
-                    </h2>
-                    <p class="me-2 my-auto">
-                        <a href="./main.view.php">Home</a> /
-                        <?php
-                        echo $_SESSION["claseAsignada"];
-                        ?>
-                    </p>
+                    <h2 class="ms-2">Editar datos de perfil</h2>
+                    <p class="me-2 my-auto"><a href="./main.view.php">Home</a> / Perfil</p>
                 </div>
                 <div class="card shadow-sm mx-3">
                     <div class="card-body">
