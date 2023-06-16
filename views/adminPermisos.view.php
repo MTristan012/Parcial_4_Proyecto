@@ -5,6 +5,7 @@ if (empty($_SESSION["id"])) {
 } else if ($_SESSION['permiso'] != 1) {
     header("Location:./main.view.php");
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -86,12 +87,13 @@ if (empty($_SESSION["id"])) {
                     <p class="me-2 my-auto"><a href="./main.view.php">Home</a> / Permisos</p>
                 </div>
                 <div class="card shadow-sm mx-3">
+                    <div class="card-header">Información de Permisos</div>
                     <div class="card-body">
-                        <p class="my-0">Bienvenido</p>
-                        <p class="my-0">Seleciona la accion que quieras realizar en las pestañas del menu de las izquierda</p>
+                        <?php
+                        include "../controller/ctrlrAdminPermisos.php";
+                        ?>
                     </div>
                 </div>
-
             </section>
             <footer>
                 <div class=" border d-flex justify-content-between align-items-center m-0 p-0">
