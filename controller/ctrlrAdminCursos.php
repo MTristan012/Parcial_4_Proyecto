@@ -10,7 +10,7 @@ $conn->set_charset("utf8");
 if (!$conn) {
     die("Error de conexión: " . mysqli_connect_error());
 }
-
+/*
 $sql = "SELECT universitycursos.*
 FROM universityusers
 LEFT JOIN universitycursos ON universityusers.claseAsignada = universitycursos.clase
@@ -21,6 +21,8 @@ FROM universityusers
 RIGHT JOIN universitycursos ON universityusers.claseAsignada = universitycursos.clase
 WHERE universityusers.claseAsignada IS NOT NULL;
 ";
+*/
+$sql = "SELECT * FROM `proyecto`.`universitycursos`;";
 $result = mysqli_query($conn, $sql);
 ?>
 
