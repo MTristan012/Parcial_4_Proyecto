@@ -29,8 +29,8 @@ $result = mysqli_query($conn, $sql);
         </div>
     </div>
 </div>
-<div>
-    <table class="table">
+<div class="mt-3">
+    <table class="table table-striped table-bordered">
         <thead>
             <tr>
                 <th scope="col">#</th>
