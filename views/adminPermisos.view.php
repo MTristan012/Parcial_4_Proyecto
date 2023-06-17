@@ -90,7 +90,7 @@ if (empty($_SESSION["id"])) {
                     <div class="card-header">Información de Permisos</div>
                     <div class="card-body">
                         <?php
-                        include "../controller/ctrlrAdminPermisos.php";
+                        include "../sources/srcAdminPermisos.php";
                         ?>
                     </div>
                 </div>
