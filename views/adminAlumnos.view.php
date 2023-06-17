@@ -87,7 +87,7 @@ if (empty($_SESSION["id"])) {
                 </div>
                 <div class="card shadow-sm mx-3">
                     <div class="card-header d-flex justify-content-between">
-                        <div class="my-auto">Información de Maestros</div>
+                        <div class="my-auto">Información de Alumnos</div>
                         <div>
                             <button type="button" class="btn btn-primary">Agregar Alumno</button>
                         </div>

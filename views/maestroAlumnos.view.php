@@ -103,12 +103,18 @@ if (empty($_SESSION["id"])) {
                     </p>
                 </div>
                 <div class="card shadow-sm mx-3">
+                    <div class="card-header d-flex justify-content-between">
+                        <div class="my-auto">Información de Alumnos</div>
+                        <div>
+                            <button type="button" class="btn btn-primary">Agregar Alumno</button>
+                        </div>
+                    </div>
                     <div class="card-body">
-                        <p class="my-0">Bienvenido</p>
-                        <p class="my-0">Seleciona la accion que quieras realizar en las pestañas del menu de las izquierda</p>
+                        <?php
+                        include "../controller/ctrlrMaestroAlumnos.php";
+                        ?>
                     </div>
                 </div>
-
             </section>
             <footer>
                 <div class=" border d-flex justify-content-between align-items-center m-0 p-0">
