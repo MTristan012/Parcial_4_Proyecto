@@ -1,8 +1,8 @@
 <?php
   session_start();
   if (isset($_SESSION['id'])){
-    header('Location:./sources/main.php');
+    header('Location:./views/main.view.php');
   } else {
-    header('Location:./sources/signIn.php');
+    header('Location:./views/logIn.view.php');
   }
 ?>
