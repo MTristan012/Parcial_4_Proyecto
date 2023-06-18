@@ -89,12 +89,50 @@ if (empty($_SESSION["id"])) {
                     <div class="card-header d-flex justify-content-between">
                         <div class="my-auto">Información de Maestros</div>
                         <div>
-                            <button type="button" class="btn btn-primary">Agregar Maestro</button>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar Maestro</button>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <form method="POST" action="../controller/ctrlrAdminMaestrosNuevo.php">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Maestro</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Correo Electronico</label>
+                                                    <input type="email" class="form-control" name="inputAdminEmailMaestro" placeholder="maestro@maestro">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Nombre(s)</label>
+                                                    <input type="text" class="form-control" name="inputAdminNombreMaestro" placeholder="John">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Apellido(s)</label>
+                                                    <input type="text" class="form-control" name="inputAdminApellidoMaestro" placeholder="Doe">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Direccion</label>
+                                                    <input type="text" class="form-control" name="inputAdminDireccionMaestro" placeholder="Address">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Fecha de Nacimineto</label>
+                                                    <input type="date" class="form-control" name="inputAdminFechaMaestro">
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <input type="submit" class="btn btn-primary" value="Crear" name="inputAdminButtonMaestro"></input>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="card-body">
                         <?php
-                        include "../controller/ctrlrAdminMaestros.php";
+                        include "../sources/srcAdminMaestros.php";
                         ?>
                     </div>
                 </div>
