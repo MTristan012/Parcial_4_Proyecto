@@ -110,7 +110,7 @@ $result = mysqli_query($conn, $sql);
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                    <input type="button" class="btn btn-primary" value="Guardar Cambios" name="buttonAdminPermisos"></input>
+                                    <input type="submit" class="btn btn-primary" value="Guardar Cambios" name="buttonAdminPermisos"></input>
                                 </div>
                             </form>
                         </div>
