@@ -89,12 +89,54 @@ if (empty($_SESSION["id"])) {
                     <div class="card-header d-flex justify-content-between">
                         <div class="my-auto">Información de Alumnos</div>
                         <div>
-                            <button type="button" class="btn btn-primary">Agregar Alumno</button>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar Alumno</button>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <form method="POST" action="../controller/ctrlrAdminAlumnosNuevo.php">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Alumno</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="mb-3">
+                                                    <label class="form-label">DNI</label>
+                                                    <input type="number" class="form-control" name="inputAdminDNIAlumno" placeholder="0000000">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Correo Electronico</label>
+                                                    <input type="email" class="form-control" name="inputAdminEmailAlumno" placeholder="alumno@alumno">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Nombre(s)</label>
+                                                    <input type="text" class="form-control" name="inputAdminNombreAlumno" placeholder="John">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Apellido(s)</label>
+                                                    <input type="text" class="form-control" name="inputAdminApellidoAlumno" placeholder="Doe">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Direccion</label>
+                                                    <input type="text" class="form-control" name="inputAdminDireccionAlumno" placeholder="Address">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Fecha de Nacimineto</label>
+                                                    <input type="date" class="form-control" name="inputAdminFechaAlumno">
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <input type="submit" class="btn btn-primary" value="Crear" name="inputAdminButtonAlumno"></input>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="card-body">
                         <?php
-                        include "../controller/ctrlrAdminAlumnos.php";
+                        include "../sources/srcAdminAlumnos.php";
                         ?>
                     </div>
                 </div>

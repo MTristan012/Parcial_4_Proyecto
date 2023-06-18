@@ -22,6 +22,18 @@ $result = mysqli_query($conn, $sql);
         <button type="button" class="btn btn-success">PDF</button>
         <button type="button" class="btn btn-success">Column Visibility</button>
     </div>
+    <?php
+    if (isset($_GET['alert'])) {
+        $alert = $_GET['alert'];
+        if ($alert == 'success') {
+            echo "<div class='alert alert-success text-center my-auto py-0'>Insertion successful!</div>";
+        } elseif ($alert == 'error') {
+            echo "<div class='alert alert-danger text-center my-auto py-0'>Error al insertar los Datos</div>";
+        } elseif ($alert == 'empty') {
+            echo "<div class='alert alert-danger text-center my-auto py-0'>Llene el Formulario</div>";
+        }
+    }
+    ?>
     <div>
         <div class="form d-flex">
             <p class="my-auto me-2">Search: </p>
