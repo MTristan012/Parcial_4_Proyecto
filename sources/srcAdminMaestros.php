@@ -58,6 +58,11 @@ $result = mysqli_query($conn, $sql);
             <?php
             $x = 1;
             while ($row = mysqli_fetch_assoc($result)) {
+                $email = $row["email"];
+                $nombre = $row["nombre"];
+                $direccion = $row["direccion"];
+                $fecha = $row["fechaDeNacimiento"];
+                $clase = $row["claseAsignada"]
             ?>
                 <tr>
                     <td>
@@ -66,47 +71,65 @@ $result = mysqli_query($conn, $sql);
                         $x++;
                         ?>
                     </td>
+                    <td> <?php echo $row["nombre"]; ?> </td>
+                    <td> <?php echo $row["email"]; ?> </td>
+                    <td> <?php echo $row["direccion"]; ?> </td>
+                    <td> <?php echo $row["fechaDeNacimiento"]; ?> </td>
+                    <td> <?php echo $row["claseAsignada"]; ?> </td>
                     <td>
-                        <?php
-                        echo $row["nombre"];
-                        ?>
-                    </td>
-                    <td>
-                        <?php
-                        echo $row["email"];
-                        ?>
-                    </td>
-                    <td>
-                        <?php
-                        echo $row["direccion"];
-                        ?>
-                    </td>
-                    <td>
-                        <?php
-                        echo $row["fechaDeNacimiento"];
-                        ?>
-                    </td>
-                    <td>
-                        <?php
-                        echo $row["claseAsignada"];
-                        ?>
-                    </td>
-                    <td>
-                        <?php
-                        echo '
-                                <div class="d-flex justify-content-center">
-                                    <a type="button" class="btn-link me-2" style="color: #17a2b8"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                                    </svg></a>
-                                    <a type="button" class="btn-link ms-2" style="color: #dc3545"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
-                                    </svg></a>
-                                </div>
-                            ';
-                        ?>
+                        <div class="d-flex justify-content-center">
+                            <a type="button" class="btn-link" style="color: #17a2b8" data-bs-toggle="modal" data-bs-target="#adminMaestroModal<?php echo $email; ?>">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                </svg>
+                            </a>
+                            <a type="button" class="btn-link ms-2" style="color: #dc3545">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                                </svg>
+                            </a>
+                        </div>
                     </td>
                 </tr>
+                <div class="modal fade" id="adminMaestroModal<?php echo $email; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content shadow-lg">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Maestro</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form method="POST" action="../controller/ctrlrAdminMaestrosEditar.php">
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                        <label class="form-label">Email del Usuario</label>
+                                        <input type="email" class="form-control" name="inputAdminEmailMaestros" value="<?php echo $email; ?>" readonly>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Nombre(s)</label>
+                                        <input type="text" class="form-control" name="inputAdminNombreMaestros" value="<?php echo $nombre; ?>">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Direccion</label>
+                                        <input type="text" class="form-control" name="inputAdminDireccionMaestros" value="<?php echo $direccion; ?>">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Fecha de Nacimiento</label>
+                                        <input type="date" class="form-control" name="inputAdminFechaMaestros" value="<?php echo $fecha; ?>">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Clase Asignada</label>
+                                        <input type="text" class="form-control" name="inputAdminClaseMaestros" value="<?php echo $clase; ?>">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    <input type="submit" class="btn btn-primary" value="Guardar Cambios" name="buttonAdminMaestros"></input>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             <?php
             }
             ?>
