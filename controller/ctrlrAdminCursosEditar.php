@@ -27,5 +27,4 @@ if (mysqli_query($conn, $sql)) {
     header("Location: ../views/adminAlumnos.view.php");
     exit;
 }
-
 ?>

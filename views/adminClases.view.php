@@ -89,12 +89,38 @@ if (empty($_SESSION["id"])) {
                     <div class="card-header d-flex justify-content-between">
                         <div class="my-auto">Información de Clases</div>
                         <div>
-                            <button type="button" class="btn btn-primary">Agregar Curso</button>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar Clase</button>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <form method="POST" action="../controller/ctrlrAdminCursosNuevo.php">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Clase</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Nombre de la Materia</label>
+                                                    <input type="email" class="form-control" name="inputAdminNombreCurso">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Maestros disponibles para la clase</label>
+                                                    <input type="text" class="form-control" name="inputAdminNombreCurso" placeholder="John">
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <input type="submit" class="btn btn-primary" value="Crear" name="inputAdminButtonCurso"></input>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="card-body">
                         <?php
-                        include "../controller/ctrlrAdminCursos.php";
+                        include "../sources/srcAdminCursos.php";
                         ?>
                     </div>
                 </div>
