@@ -26,3 +26,4 @@ if (mysqli_query($conn, $sql)) {
     header("Location: ../views/adminMaestros.view.php");
     exit;
 }
+?>

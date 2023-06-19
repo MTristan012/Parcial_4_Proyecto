@@ -62,7 +62,7 @@ $result = mysqli_query($conn, $sql);
                 $nombre = $row["nombre"];
                 $direccion = $row["direccion"];
                 $fecha = $row["fechaDeNacimiento"];
-                $clase = $row["claseAsignada"]
+                $clase = $row["claseAsignada"];
             ?>
                 <tr>
                     <td>
