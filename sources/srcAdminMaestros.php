@@ -13,6 +13,10 @@ if (!$conn) {
 
 $sql = "SELECT * FROM universityusers WHERE `permiso` = 2;";
 $result = mysqli_query($conn, $sql);
+
+$sqlU = "SELECT * FROM universitycursos WHERE `maestro` = '' OR `maestro` IS NULL;";
+$result2 = mysqli_query($conn, $sqlU);
+
 ?>
 
 <div class="d-flex justify-content-between">
@@ -62,7 +66,7 @@ $result = mysqli_query($conn, $sql);
                 $nombre = $row["nombre"];
                 $direccion = $row["direccion"];
                 $fecha = $row["fechaDeNacimiento"];
-                $clase = $row["claseAsignada"];
+                $clase1 = $row["claseAsignada"];
                 $id = $row["id"];
             ?>
                 <tr>
@@ -119,8 +123,18 @@ $result = mysqli_query($conn, $sql);
                                         <input type="date" class="form-control" name="inputAdminFechaMaestros" value="<?php echo $fecha; ?>">
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">Clase Asignada</label>
-                                        <input type="text" class="form-control" name="inputAdminClaseMaestros" value="<?php echo $clase; ?>">
+                                        <label for="rolUsuario" class="form-label">Clase Asignada</label>
+                                        <select name="inputAdminMaestrosCursos" class="form-select form-select-lg mb-3">
+                                            <option value="<?php echo $clase1 ? $clase1 : NULL; ?>" selected><?php echo $clase1 ? $clase1 : "Sin Asignacion"; ?></option>
+                                            <?php
+                                            while ($row2 = mysqli_fetch_assoc($result2)) {
+                                            ?>
+                                                <option value="<?php echo $row2["clase"]; ?>"><?php echo $row2["clase"]; ?></option>
+                                            <?php
+                                            }
+                                            mysqli_data_seek($result2, 0);
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -130,6 +144,10 @@ $result = mysqli_query($conn, $sql);
                                 <div class="mb-3" hidden>
                                     <label class="form-label">ID</label>
                                     <input type="text" class="form-control" name="inputAdminIDMaestros" value="<?php echo $id; ?>">
+                                </div>
+                                <div class="mb-3" hidden>
+                                    <label class="form-label">Old Curso</label>
+                                    <input type="text" class="form-control" name="inputAdminOldCursoMaestros" value="<?php echo $clase1; ?>">
                                 </div>
                             </form>
                         </div>

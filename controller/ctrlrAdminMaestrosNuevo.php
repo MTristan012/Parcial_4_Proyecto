@@ -23,9 +23,14 @@ if (!empty($_POST['inputAdminButtonMaestro'])) {
         $permiso = 2;
         $password = "maestro";
         $estado = 1;
+
+        $curso = $_POST['inputAdminMaestrosCursos'];
         
-        $sql = "INSERT INTO universityusers (email, password, permiso, estado, nombre, direccion, fechaDeNacimiento) VALUES ('$email', '$password', '$permiso', '$estado', '$fullName', '$direccion', '$fecha')";
-        if (mysqli_query($conn, $sql)) {
+        $sql = "INSERT INTO universityusers (email, password, permiso, estado, nombre, direccion, fechaDeNacimiento, claseAsignada) VALUES ('$email', '$password', '$permiso', '$estado', '$fullName', '$direccion', '$fecha', '$curso')";
+
+        $sqlU = "UPDATE universitycursos SET maestro = '$fullName' WHERE clase = '$curso' ";
+
+        if (mysqli_query($conn, $sql) and mysqli_query($conn, $sqlU)) {
             header("Location: ../views/adminMaestros.view.php?alert=success");
             exit;
         } else {
