@@ -16,9 +16,10 @@ $email = $_POST['inputAdminEmailAlumnos'];
 $name = $_POST['inputAdminNombreAlumnos'];
 $direccion = $_POST['inputAdminDireccionAlumnos'];
 $date = $_POST['inputAdminFechaAlumnos'];
+$id = $_POST['inputAdminIDAlumnos'];
 
 
-$sql = "UPDATE universityusers SET nombre = '$name', direccion = '$direccion', fechaDeNacimiento = '$date', dni = '$dni' WHERE email = '$email' ";
+$sql = "UPDATE universityusers SET nombre = '$name', direccion = '$direccion', fechaDeNacimiento = '$date', dni = '$dni' WHERE id = '$id' ";
 if (mysqli_query($conn, $sql)) {
     header("Location: ../views/adminAlumnos.view.php");
     exit;
