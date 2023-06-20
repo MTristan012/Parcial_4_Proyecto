@@ -11,17 +11,16 @@ if (!$conn) {
     die("Error de conexión: " . mysqli_connect_error());
 }
 
-$name = $_POST['inputAdminNombreCursos'];
-$maestro = $_POST['inputAdminMaestroCursos'];
-$id = $_POST['inputAdminIDCursos'];
+$id = $_POST['inputAdminIDAlumnos'];
 
-$sql = "UPDATE universitycursos SET clase = '$name', maestro = '$maestro' WHERE id = '$id' ";
+$sql = "DELETE FROM `universityusers` WHERE `universityusers`.`id` = '$id' ";
 if (mysqli_query($conn, $sql)) {
-    header("Location: ../views/adminClases.view.php");
+    header("Location: ../views/adminAlumnos.view.php");
     exit;
 } else {
     echo "Error al insertar el registro: " . mysqli_error($conn);
-    header("Location: ../views/adminClases.view.php");
+    header("Location: ../views/adminAlumnos.view.php");
     exit;
 }
+
 ?>

@@ -11,11 +11,9 @@ if (!$conn) {
     die("Error de conexión: " . mysqli_connect_error());
 }
 
-$name = $_POST['inputAdminNombreCursos'];
-$maestro = $_POST['inputAdminMaestroCursos'];
 $id = $_POST['inputAdminIDCursos'];
 
-$sql = "UPDATE universitycursos SET clase = '$name', maestro = '$maestro' WHERE id = '$id' ";
+$sql = "DELETE FROM `universitycursos` WHERE `universitycursos`.`id` = '$id' ";
 if (mysqli_query($conn, $sql)) {
     header("Location: ../views/adminClases.view.php");
     exit;
@@ -24,4 +22,5 @@ if (mysqli_query($conn, $sql)) {
     header("Location: ../views/adminClases.view.php");
     exit;
 }
+
 ?>
