@@ -12,9 +12,12 @@ if (!$conn) {
 }
 
 $id = $_POST['inputAdminIDCursos'];
+$oldMaestro = $_POST['inputAdminOldMaestroCursos'];
 
 $sql = "DELETE FROM `universitycursos` WHERE `universitycursos`.`id` = '$id' ";
-if (mysqli_query($conn, $sql)) {
+$sqlX = "UPDATE universityusers SET claseAsignada = NULL WHERE nombre = '$oldMaestro' ";
+
+if (mysqli_query($conn, $sql) and mysqli_query($conn, $sqlX)) {
     header("Location: ../views/adminClases.view.php");
     exit;
 } else {
@@ -22,5 +25,4 @@ if (mysqli_query($conn, $sql)) {
     header("Location: ../views/adminClases.view.php");
     exit;
 }
-
 ?>
