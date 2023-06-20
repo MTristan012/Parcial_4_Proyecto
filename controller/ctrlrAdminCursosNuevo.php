@@ -1,6 +1,6 @@
 <?php
-if (!empty($_POST['inputAdminButtonAlumno'])) {
-    if (!empty($_POST['inputAdminDNIAlumno']) && !empty($_POST['inputAdminEmailAlumno']) && !empty($_POST['inputAdminNombreAlumno']) && !empty($_POST['inputAdminApellidoAlumno']) && !empty($_POST['inputAdminDireccionAlumno']) && !empty($_POST['inputAdminFechaAlumno'])) {
+if (!empty($_POST['inputAdminButtonCurso'])) {
+    if (!empty($_POST['inputAdminMaestroCurso']) && !empty($_POST['inputAdminNombreCurso'])) {
 
         $servername = "127.0.0.1";
         $username = "root";
@@ -14,27 +14,19 @@ if (!empty($_POST['inputAdminButtonAlumno'])) {
             die("Error de conexión: " . mysqli_connect_error());
         }
         
-        $dni = $_POST['inputAdminDNIAlumno'];
-        $email = $_POST['inputAdminEmailAlumno'];
-        $name = $_POST['inputAdminNombreAlumno'];
-        $apellido = $_POST['inputAdminApellidoAlumno'];
-        $direccion = $_POST['inputAdminDireccionAlumno'];
-        $fecha = $_POST['inputAdminFechaAlumno'];
-        $fullName = $name . " " . $apellido;
-        $permiso = 3;
-        $password = "alumno";
-        $estado = 1;
+        $name = $_POST['inputAdminNombreCurso'];
+        $maestro = $_POST['inputAdminMaestroCurso'];
         
-        $sql = "INSERT INTO universityusers (email, password, permiso, estado, nombre, direccion, fechaDeNacimiento, dni) VALUES ('$email', '$password', '$permiso', '$estado', '$fullName', '$direccion', '$fecha', $dni)";
+        $sql = "INSERT INTO universitycursos (clase, maestro) VALUES ('$name', '$maestro')";
         if (mysqli_query($conn, $sql)) {
-            header("Location: ../views/adminAlumnos.view.php?alert=success");
+            header("Location: ../views/adminClases.view.php?alert=success");
             exit;
         } else {
-            header("Location: ../views/adminAlumnos.view.php?alert=error");
+            header("Location: ../views/adminClases.view.php?alert=error");
             exit;
         }
     } else {
-        header("Location: ../views/adminAlumnos.view.php?alert=empty");
+        header("Location: ../views/adminClases.view.php?alert=empty");
         exit;
     }
 }

@@ -120,7 +120,7 @@ $result = mysqli_query($conn, $sql);
                                 <div class="modal-body">
                                     <div class="mb-3">
                                         <label class="form-label">Nombre de la Materia</label>
-                                        <input type="text" class="form-control" name="inputAdminNombreCursos" value="<?php echo $clase; ?>">
+                                        <input type="text" class="form-control" name="inputAdminNombreCursos" value="<?php echo $clase; ?>" readonly>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Maestro Asignado</label>

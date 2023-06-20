@@ -101,11 +101,11 @@ if (empty($_SESSION["id"])) {
                                             <div class="modal-body">
                                                 <div class="mb-3">
                                                     <label class="form-label">Nombre de la Materia</label>
-                                                    <input type="email" class="form-control" name="inputAdminNombreCurso">
+                                                    <input type="text" class="form-control" name="inputAdminNombreCurso">
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Maestros disponibles para la clase</label>
-                                                    <input type="text" class="form-control" name="inputAdminNombreCurso" placeholder="John">
+                                                    <input type="text" class="form-control" name="inputAdminMaestroCurso" placeholder="John">
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
