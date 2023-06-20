@@ -10,20 +10,13 @@ $conn->set_charset("utf8");
 if (!$conn) {
     die("Error de conexión: " . mysqli_connect_error());
 }
-/*
-$sql = "SELECT universitycursos.*
-FROM universityusers
-LEFT JOIN universitycursos ON universityusers.claseAsignada = universitycursos.clase
-WHERE universityusers.claseAsignada IS NOT NULL
-UNION
-SELECT universitycursos.*
-FROM universityusers
-RIGHT JOIN universitycursos ON universityusers.claseAsignada = universitycursos.clase
-WHERE universityusers.claseAsignada IS NOT NULL;
-";
-*/
+
 $sql = "SELECT * FROM `proyecto`.`universitycursos`;";
 $result = mysqli_query($conn, $sql);
+
+$sql2 = "SELECT * FROM universityusers WHERE `permiso` = 2 AND (`claseAsignada` IS NULL OR `claseAsignada` = '') ";
+$result2 = mysqli_query($conn, $sql2);
+
 ?>
 
 <div class="d-flex justify-content-between">
@@ -123,13 +116,27 @@ $result = mysqli_query($conn, $sql);
                                         <label class="form-label">Nombre de la Materia</label>
                                         <input type="text" class="form-control" name="inputAdminNombreCursos" value="<?php echo $clase; ?>">
                                     </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Maestro Asignado</label>
-                                        <input type="text" class="form-control" name="inputAdminMaestroCursos" value="<?php echo $maestro; ?>">
+                                    <div class="mb-3" hidden>
+                                        <label class="form-label">Old Maestro</label>
+                                        <input type="text" class="form-control" name="inputAdminOldMaestroCurso" value="<?php echo $maestro; ?>">
                                     </div>
                                     <div class="mb-3" hidden>
                                         <label class="form-label">ID</label>
                                         <input type="text" class="form-control" name="inputAdminIDCursos" value="<?php echo $id; ?>">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="rolUsuario" class="form-label">Maestro Asignado</label>
+                                        <select name="inputAdminMaestrosCursos" class="form-select form-select-lg mb-3">
+                                            <option value="<?php echo $maestro ? $maestro : NULL; ?>" selected><?php echo $maestro ? $maestro : "Sin Asignacion"; ?></option>
+                                            <?php
+                                            while ($row2 = mysqli_fetch_assoc($result2)) {
+                                            ?>
+                                                <option value="<?php echo $row2["nombre"]; ?>"><?php echo $row2["nombre"]; ?></option>
+                                            <?php
+                                            }
+                                            mysqli_data_seek($result2, 0);
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="modal-footer">

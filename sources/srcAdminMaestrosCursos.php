@@ -17,6 +17,7 @@ $result = mysqli_query($conn, $sql);
 
 <label for="rolUsuario" class="form-label">Clase Asignada</label>
 <select name="inputAdminMaestrosCursos" class="form-select form-select-lg mb-3">
+        <option value="" selected>Sin Asignar</option>
     <?php
     while ($row = mysqli_fetch_assoc($result)) {
         $id = $row["id"];

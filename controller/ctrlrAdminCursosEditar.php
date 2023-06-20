@@ -11,17 +11,50 @@ if (!$conn) {
     die("Error de conexión: " . mysqli_connect_error());
 }
 
-$name = $_POST['inputAdminNombreCursos'];
-$maestro = $_POST['inputAdminMaestroCursos'];
 $id = $_POST['inputAdminIDCursos'];
+$name = $_POST['inputAdminNombreCursos'];
+$maestro = $_POST['inputAdminMaestrosCursos'];
+$oldMaestro = $_POST['inputAdminOldMaestroCurso'];
 
-$sql = "UPDATE universitycursos SET clase = '$name', maestro = '$maestro' WHERE id = '$id' ";
-if (mysqli_query($conn, $sql)) {
-    header("Location: ../views/adminClases.view.php");
-    exit;
+if ($maestro) {
+
+    if ($maestro == $oldMaestro) {
+        $sql = "UPDATE universitycursos SET clase = '$name', maestro = '$maestro' WHERE id = '$id' ";
+        $sqlU = "UPDATE universityusers SET claseAsignada = '$name' WHERE nombre = '$maestro' ";
+
+        if (mysqli_query($conn, $sql) and mysqli_query($conn, $sqlU)) {
+            header("Location: ../views/adminClases.view.php");
+            exit;
+        } else {
+            echo "Error al insertar el registro: " . mysqli_error($conn);
+            header("Location: ../views/adminClases.view.php");
+            exit;
+        }
+    } else {
+        $sql = "UPDATE universitycursos SET clase = '$name', maestro = '$maestro' WHERE id = '$id' ";
+        $sqlU = "UPDATE universityusers SET claseAsignada = '$name' WHERE nombre = '$maestro' ";
+        $sqlX = "UPDATE universityusers SET claseAsignada = NULL WHERE nombre = '$oldMaestro' ";
+
+        if (mysqli_query($conn, $sql) and mysqli_query($conn, $sqlU) and mysqli_query($conn, $sqlX)) {
+            header("Location: ../views/adminClases.view.php");
+            exit;
+        } else {
+            echo "Error al insertar el registro: " . mysqli_error($conn);
+            header("Location: ../views/adminClases.view.php");
+            exit;
+        }
+    }
+    
 } else {
-    echo "Error al insertar el registro: " . mysqli_error($conn);
-    header("Location: ../views/adminClases.view.php");
-    exit;
+    $sql = "UPDATE universitycursos SET clase = '$name', maestro = '$maestro' WHERE id = '$id' ";
+    if (mysqli_query($conn, $sql)) {
+        header("Location: ../views/adminClases.view.php");
+        exit;
+    } else {
+        echo "Error al insertar el registro: " . mysqli_error($conn);
+        header("Location: ../views/adminClases.view.php");
+        exit;
+    } 
 }
+
 ?>

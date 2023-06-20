@@ -26,17 +26,29 @@ if (!empty($_POST['inputAdminButtonMaestro'])) {
 
         $curso = $_POST['inputAdminMaestrosCursos'];
         
-        $sql = "INSERT INTO universityusers (email, password, permiso, estado, nombre, direccion, fechaDeNacimiento, claseAsignada) VALUES ('$email', '$password', '$permiso', '$estado', '$fullName', '$direccion', '$fecha', '$curso')";
+        if ($curso) {
+            $sql = "INSERT INTO universityusers (email, password, permiso, estado, nombre, direccion, fechaDeNacimiento, claseAsignada) VALUES ('$email', '$password', '$permiso', '$estado', '$fullName', '$direccion', '$fecha', '$curso')";
+            $sqlU = "UPDATE universitycursos SET maestro = '$fullName' WHERE clase = '$curso' ";
 
-        $sqlU = "UPDATE universitycursos SET maestro = '$fullName' WHERE clase = '$curso' ";
-
-        if (mysqli_query($conn, $sql) and mysqli_query($conn, $sqlU)) {
-            header("Location: ../views/adminMaestros.view.php?alert=success");
-            exit;
+            if (mysqli_query($conn, $sql) and mysqli_query($conn, $sqlU)) {
+                header("Location: ../views/adminMaestros.view.php?alert=success");
+                exit;
+            } else {
+                header("Location: ../views/adminMaestros.view.php?alert=error");
+                exit;
+            }
         } else {
-            header("Location: ../views/adminMaestros.view.php?alert=error");
-            exit;
+            $sql = "INSERT INTO universityusers (email, password, permiso, estado, nombre, direccion, fechaDeNacimiento, claseAsignada) VALUES ('$email', '$password', '$permiso', '$estado', '$fullName', '$direccion', '$fecha', '$curso')";
+            if (mysqli_query($conn, $sql)) {
+                header("Location: ../views/adminMaestros.view.php?alert=success");
+                exit;
+            } else {
+                header("Location: ../views/adminMaestros.view.php?alert=error");
+                exit;
+            }
         }
+        
+        
     } else {
         header("Location: ../views/adminMaestros.view.php?alert=empty");
         exit;

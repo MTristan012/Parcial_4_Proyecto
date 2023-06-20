@@ -104,8 +104,9 @@ if (empty($_SESSION["id"])) {
                                                     <input type="text" class="form-control" name="inputAdminNombreCurso">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label class="form-label">Maestros disponibles para la clase</label>
-                                                    <input type="text" class="form-control" name="inputAdminMaestroCurso" placeholder="John">
+                                                    <?php
+                                                    include "../sources/srcAdminCursosMaestros.php"
+                                                    ?>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
