@@ -11,7 +11,15 @@ if (!$conn) {
     die("Error de conexión: " . mysqli_connect_error());
 }
 
-$sql = "SELECT * FROM universityusers WHERE `permiso` = 3;";
+$claseAsignada = $_SESSION["claseAsignada"];
+
+$sql = "SELECT *
+FROM universityusers
+WHERE nombre IN (
+  SELECT nombreAlumno
+  FROM universityinscriptions
+  WHERE nombreClase = '$claseAsignada'
+);";
 $result = mysqli_query($conn, $sql);
 ?>
 

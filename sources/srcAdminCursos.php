@@ -84,7 +84,15 @@ $result2 = mysqli_query($conn, $sql2);
                     </td>
                     <td>
                         <?php
-                        echo $row["alumnos"];
+                        $cantidadIns = "SELECT COUNT(*) FROM universityinscriptions WHERE nombreClase = '$clase' ;";
+                        $result3 = mysqli_query($conn, $cantidadIns);
+                        if ($result3) {
+                            $fila = mysqli_fetch_array($result3);
+                            $cantidad = $fila[0];
+                            echo $cantidad;
+                        } else {
+                            echo "Error en la consulta: " . mysqli_error($conn);
+                        }
                         ?>
                     </td>
                     <td>
