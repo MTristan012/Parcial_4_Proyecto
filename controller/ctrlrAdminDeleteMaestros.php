@@ -12,9 +12,12 @@ if (!$conn) {
 }
 
 $id = $_POST['inputAdminIDMaestros'];
+$oldCurso = $_POST['inputAdminOldCursoMaestros'];
 
 $sql = "DELETE FROM `universityusers` WHERE `universityusers`.`id` = '$id' ";
-if (mysqli_query($conn, $sql)) {
+$sqlX = "UPDATE universitycursos SET maestro = NULL WHERE clase = '$oldCurso' ";
+
+if (mysqli_query($conn, $sql) and mysqli_query($conn, $sqlX)) {
     header("Location: ../views/adminMaestros.view.php");
     exit;
 } else {

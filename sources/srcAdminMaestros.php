@@ -169,6 +169,10 @@ $result2 = mysqli_query($conn, $sqlU);
                                         <label class="form-label">ID</label>
                                         <input type="text" class="form-control" name="inputAdminIDMaestros" value="<?php echo $id; ?>">
                                     </div>
+                                    <div class="mb-3" hidden>
+                                        <label class="form-label">Old Curso</label>
+                                        <input type="text" class="form-control" name="inputAdminOldCursoMaestros" value="<?php echo $clase1; ?>">
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
