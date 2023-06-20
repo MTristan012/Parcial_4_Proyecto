@@ -96,13 +96,10 @@ if (empty($_SESSION["id"])) {
                     <h2 class="ms-2">Esquema de Clases</h2>
                     <p class="me-2 my-auto"><a href="./main.view.php">Home</a> / Clases</p>
                 </div>
-                <div class="card shadow-sm mx-3">
-                    <div class="card-body">
-                        <p class="my-0">Bienvenido</p>
-                        <p class="my-0">Seleciona la accion que quieras realizar en las pestañas del menu de las izquierda</p>
-                    </div>
-                </div>
-
+                <div class="d-flex gap-3 mx-2">
+                    <?php
+                    include("../sources/srcAlumnoCursos.php");
+                    ?>
             </section>
             <footer>
                 <div class=" border d-flex justify-content-between align-items-center m-0 p-0">
